@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hot Content Club. Personal brands that stop the scroll. A private consulting group for creators who'd rather post than perform.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <title>Hot Content Club</title>
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Hot Content Club">
+  <meta property="og:description" content="Personal brands that stop the scroll. Now THAT'S hot.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hotcontentclub.com/">
+  <meta property="og:image" content="https://hotcontentclub.com/og-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hot Content Club">
+  <meta name="twitter:description" content="Personal brands that stop the scroll. Now THAT'S hot.">
+  <meta name="twitter:image" content="https://hotcontentclub.com/og-image.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #f5f1ea;
+      --text-accent: #ffffff;
+      --text-muted: #6f6a64;
+      --text-faint: #3f3a35;
+      --hairline: #1a1a1a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Film grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    main { position: relative; z-index: 2; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0 60px;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 40px;
+    }
+
+    .masthead {
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: clamp(72px, 16vw, 220px);
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .masthead .accent {
+      color: var(--text-accent);
+    }
+
+    .subhead {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(26px, 4.5vw, 56px);
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 44px;
+      padding-left: clamp(0px, 2vw, 24px);
+    }
+
+    .hero-body {
+      font-size: clamp(17px, 1.9vw, 22px);
+      line-height: 1.4;
+      max-width: 580px;
+      margin-bottom: 48px;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* ============ CTA FORM ============ */
+    .cta-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 480px;
+    }
+
+    .cta-form input[type="email"] {
+      width: 100%;
+      padding: 18px 0;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--text);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--text);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .cta-form input[type="email"]::placeholder {
+      color: var(--text-faint);
+    }
+
+    .cta-form input[type="email"]:focus {
+      border-bottom-color: var(--text-accent);
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 18px 36px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--bg);
+      background: var(--text-accent);
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+      align-self: flex-start;
+      letter-spacing: -0.01em;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(255, 255, 255, 0.12);
+    }
+
+    .cta-button:active { transform: translateY(0); }
+
+    .micro-trust {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .micro-trust a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--text-muted);
+      padding-bottom: 1px;
+      transition: border-color 0.2s ease;
+    }
+
+    .micro-trust a:hover {
+      border-bottom-color: var(--text-accent);
+    }
+
+    /* ============ INSIDE TEASE ============ */
+    .inside {
+      padding: 120px 0;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .inside-eyebrow {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .inside-list {
+      list-style: none;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .inside-list li {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: clamp(26px, 4vw, 46px);
+      line-height: 1.25;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--hairline);
+      color: var(--text);
+    }
+
+    .inside-list li:last-child { border-bottom: none; }
+
+    .inside-list em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text-accent);
+    }
+
+    /* ============ MIDDLE PULL-QUOTE ============ */
+    .pull-quote {
+      padding: 120px 0;
+      text-align: center;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .pull-quote p {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(32px, 5.5vw, 64px);
+      line-height: 1.1;
+      max-width: 880px;
+      margin: 0 auto;
+      color: var(--text);
+    }
+
+    /* ============ FINAL CTA ============ */
+    .final-cta {
+      padding: 140px 0 120px;
+      text-align: center;
+    }
+
+    .final-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: clamp(56px, 10vw, 128px);
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--text-accent);
+      margin-bottom: 20px;
+    }
+
+    .final-subline {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 48px;
+    }
+
+    .final-cta .cta-form {
+      max-width: 460px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .final-cta .cta-button {
+      align-self: center;
+    }
+
+    /* ============ FOOTER ============ */
+    .site-footer {
+      padding: 48px 0 56px;
+      text-align: center;
+      border-top: 1px solid var(--hairline);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      line-height: 2;
+    }
+
+    .site-footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .site-footer a:hover {
+      color: var(--text-accent);
+    }
+
+    .site-footer .sep {
+      margin: 0 12px;
+      color: var(--text-faint);
+    }
+
+    /* ============ SUCCESS STATE ============ */
+    .form-success {
+      display: none;
+      padding: 16px 0;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: clamp(22px, 3vw, 32px);
+      color: var(--text-accent);
+      line-height: 1.3;
+    }
+
+    .form-success.visible { display: block; }
+    .cta-form.hidden { display: none; }
+
+    /* ============ MOBILE ============ */
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+
+      .hero { padding: 64px 0 48px; min-height: auto; }
+      .hero-body { margin-bottom: 36px; }
+
+      .inside { padding: 72px 0; }
+      .inside-eyebrow { margin-bottom: 40px; }
+      .inside-list li { padding: 22px 0; font-size: clamp(22px, 5vw, 32px); }
+
+      .pull-quote { padding: 80px 0; }
+
+      .final-cta { padding: 96px 0 80px; }
+      .final-headline { margin-bottom: 40px; }
+
+      .cta-form { max-width: 100%; }
+      .cta-button { width: 100%; align-self: stretch; }
+      .final-cta .cta-button { align-self: stretch; }
+
+      body::before { opacity: 0.035; }
+    }
+
+    @media (max-width: 380px) {
+      .container { padding: 0 16px; }
+
+      .hero { padding: 48px 0 40px; }
+      .hero-eyebrow { margin-bottom: 28px; }
+      .subhead { margin-bottom: 32px; padding-left: 0; }
+      .hero-body { margin-bottom: 32px; }
+
+      .inside { padding: 56px 0; }
+      .inside-eyebrow { margin-bottom: 32px; }
+      .inside-list li { padding: 18px 0; font-size: 20px; }
+
+      .pull-quote { padding: 64px 0; }
+      .final-cta { padding: 72px 0 64px; }
+
+      .cta-button { padding: 16px 28px; font-size: 16px; }
+
+      .site-footer { padding: 40px 0 48px; font-size: 10px; }
+      .site-footer .sep { margin: 0 8px; }
+    }
+
+    /* ============ MOTION ============ */
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-in {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow hero-eyebrow">A Private Club · Opening Soon</div>
+
+        <h1 class="masthead">
+          Hot Content<br>
+          <span class="accent">Club</span>
+        </h1>
+
+        <p class="subhead"><em>Personal brands that stop the scroll.<br>Now THAT'S hot.</em></p>
+
+        <p class="hero-body">
+          A private consulting group for the creators who'd rather post than perform.
+        </p>
+
+        <form class="cta-form" id="waitlist-form-hero" action="" method="POST" novalidate>
+          <input type="email" name="email" placeholder="your@email.com" aria-label="Email address" required>
+          <button type="submit" class="cta-button">Get on the list →</button>
+          <p class="micro-trust">
+            From <a href="https://instagram.com/angelinaabalandina" target="_blank" rel="noopener">@angelinaabalandina</a>
+          </p>
+        </form>
+
+        <div class="form-success" id="success-hero">
+          You're in. We'll be in touch when the doors open.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INSIDE TEASE ============ -->
+    <section class="inside">
+      <div class="container">
+        <div class="eyebrow inside-eyebrow">Inside</div>
+
+        <ul class="inside-list">
+          <li class="fade-in"><em>Content strategy</em> that compounds week over week.</li>
+          <li class="fade-in"><em>Brand pillars</em> that make you a category of one.</li>
+          <li class="fade-in"><em>Private video teardowns</em> on the work you post.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ MIDDLE PULL-QUOTE ============ -->
+    <section class="pull-quote">
+      <div class="container">
+        <p class="fade-in"><em>Doors will be open soon.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="final-cta">
+      <div class="container">
+        <h2 class="final-headline">Get on the list.</h2>
+        <p class="final-subline"><em>Be the first to know.</em></p>
+
+        <form class="cta-form" id="waitlist-form-final" action="" method="POST" novalidate>
+          <input type="email" name="email" placeholder="your@email.com" aria-label="Email address" required>
+          <button type="submit" class="cta-button">Save my spot →</button>
+        </form>
+
+        <div class="form-success" id="success-final">
+          You're in. We'll be in touch when the doors open.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+      <div class="container">
+        <a href="https://instagram.com/angelinaabalandina" target="_blank" rel="noopener">@angelinaabalandina</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    // Form submission — PLACEHOLDER
+    // REPLACE the form action="" attribute with ConvertKit or Mailchimp endpoint
+    // and remove the preventDefault + success-state JS below.
+    // For now: client-side success state so the page is testable as-is.
+
+    function handleSubmit(formId, successId) {
+      const form = document.getElementById(formId);
+      const success = document.getElementById(successId);
+      if (!form) return;
+
+      form.addEventListener('submit', function(e) {
+        const email = form.querySelector('input[type="email"]').value.trim();
+        const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+        if (!valid) {
+          form.querySelector('input[type="email"]').focus();
+          return;
+        }
+
+        // If form action is set, let the browser submit normally.
+        if (form.action && form.action !== window.location.href) {
+          if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+          if (typeof gtag !== 'undefined') gtag('event', 'sign_up', { method: 'waitlist' });
+          return;
+        }
+
+        // Placeholder: show success state without posting
+        e.preventDefault();
+        form.classList.add('hidden');
+        success.classList.add('visible');
+
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+        if (typeof gtag !== 'undefined') gtag('event', 'sign_up', { method: 'waitlist' });
+      });
+    }
+
+    handleSubmit('waitlist-form-hero', 'success-hero');
+    handleSubmit('waitlist-form-final', 'success-final');
+
+    // Fade-in on scroll
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    } else {
+      document.querySelectorAll('.fade-in').forEach(function(el) { el.classList.add('visible'); });
+    }
+  </script>
+
+  <!-- ============ ANALYTICS PLACEHOLDERS ============ -->
+  <!--
+    Add Meta Pixel here:
+    <script>!function(f,b,e,v,n,t,s){...PIXEL_ID...}</script>
+
+    Add GA4 here:
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXX');</script>
+  -->
+</body>
+</html>
