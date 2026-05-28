@@ -15,13 +15,13 @@
   <meta property="og:title" content="Hot Content Club">
   <meta property="og:description" content="Personal brands that stop the scroll. Now THAT'S hot.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://hotcontentclub.com/">
-  <meta property="og:image" content="https://hotcontentclub.com/og-image.png">
+  <meta property="og:url" content="https://madethisjustforyou.com/hot-content-club/">
+  <meta property="og:image" content="https://madethisjustforyou.com/hot-content-club/og-image.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Hot Content Club">
   <meta name="twitter:description" content="Personal brands that stop the scroll. Now THAT'S hot.">
-  <meta name="twitter:image" content="https://hotcontentclub.com/og-image.png">
+  <meta name="twitter:image" content="https://madethisjustforyou.com/hot-content-club/og-image.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -138,7 +138,8 @@
       max-width: 480px;
     }
 
-    .cta-form input[type="email"] {
+    .cta-form input[type="email"],
+    .cta-form input[type="text"] {
       width: 100%;
       padding: 18px 0;
       font-size: 16px;
@@ -152,11 +153,11 @@
       transition: border-color 0.2s ease;
     }
 
-    .cta-form input[type="email"]::placeholder {
+    .cta-form input::placeholder {
       color: var(--text-faint);
     }
 
-    .cta-form input[type="email"]:focus {
+    .cta-form input:focus {
       border-bottom-color: var(--text-accent);
     }
 
@@ -421,8 +422,9 @@
           A private consulting group for the creators who'd rather post than perform.
         </p>
 
-        <form class="cta-form" id="waitlist-form-hero" action="" method="POST" novalidate>
-          <input type="email" name="email" placeholder="your@email.com" aria-label="Email address" required>
+        <form class="cta-form" id="waitlist-form-hero" action="https://app.kit.com/forms/9496527/subscriptions" method="POST" novalidate>
+          <input type="text" name="fields[first_name]" placeholder="first name" aria-label="First name" autocomplete="given-name">
+          <input type="email" name="email_address" placeholder="your@email.com" aria-label="Email address" autocomplete="email" required>
           <button type="submit" class="cta-button">Get on the list →</button>
           <p class="micro-trust">
             From <a href="https://instagram.com/angelinaabalandina" target="_blank" rel="noopener">@angelinaabalandina</a>
@@ -461,8 +463,9 @@
         <h2 class="final-headline">Get on the list.</h2>
         <p class="final-subline"><em>Be the first to know.</em></p>
 
-        <form class="cta-form" id="waitlist-form-final" action="" method="POST" novalidate>
-          <input type="email" name="email" placeholder="your@email.com" aria-label="Email address" required>
+        <form class="cta-form" id="waitlist-form-final" action="https://app.kit.com/forms/9496527/subscriptions" method="POST" novalidate>
+          <input type="text" name="fields[first_name]" placeholder="first name" aria-label="First name" autocomplete="given-name">
+          <input type="email" name="email_address" placeholder="your@email.com" aria-label="Email address" autocomplete="email" required>
           <button type="submit" class="cta-button">Save my spot →</button>
         </form>
 
@@ -482,39 +485,51 @@
   </main>
 
   <script>
-    // Form submission — PLACEHOLDER
-    // REPLACE the form action="" attribute with ConvertKit or Mailchimp endpoint
-    // and remove the preventDefault + success-state JS below.
-    // For now: client-side success state so the page is testable as-is.
+    // Form submission — AJAX POST to Kit so the user stays on this page
+    // with the in-page success message. Kit endpoint accepts cross-origin POSTs.
 
     function handleSubmit(formId, successId) {
       const form = document.getElementById(formId);
       const success = document.getElementById(successId);
       if (!form) return;
 
-      form.addEventListener('submit', function(e) {
-        const email = form.querySelector('input[type="email"]').value.trim();
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const input = form.querySelector('input[type="email"]');
+        const email = input.value.trim();
         const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
         if (!valid) {
-          form.querySelector('input[type="email"]').focus();
+          input.focus();
           return;
         }
 
-        // If form action is set, let the browser submit normally.
-        if (form.action && form.action !== window.location.href) {
+        const button = form.querySelector('.cta-button');
+        const originalText = button.innerHTML;
+        button.innerHTML = 'Submitting…';
+        button.disabled = true;
+
+        try {
+          await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            mode: 'no-cors',
+          });
+
+          // Show in-page success state
+          form.classList.add('hidden');
+          success.classList.add('visible');
+
+          // Analytics
           if (typeof fbq !== 'undefined') fbq('track', 'Lead');
           if (typeof gtag !== 'undefined') gtag('event', 'sign_up', { method: 'waitlist' });
-          return;
+        } catch (err) {
+          // Network error — restore form
+          button.innerHTML = originalText;
+          button.disabled = false;
+          console.error('Form submission error:', err);
         }
-
-        // Placeholder: show success state without posting
-        e.preventDefault();
-        form.classList.add('hidden');
-        success.classList.add('visible');
-
-        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-        if (typeof gtag !== 'undefined') gtag('event', 'sign_up', { method: 'waitlist' });
       });
     }
 
