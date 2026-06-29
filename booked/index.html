@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your Hot Content Club call is booked. Here's how to get ready.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+
+  <title>You're Booked · Hot Content Club</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a; --text: #f5f1ea; --text-accent: #ffffff;
+      --text-muted: #6f6a64; --text-faint: #3f3a35; --hairline: #1a1a1a; --divider: #2a2520;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif; font-weight: 400; line-height: 1.5;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.05;
+      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+    main { position: relative; z-index: 2; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 32px; }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 12px;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted);
+    }
+
+    /* HERO */
+    .hero { padding: 96px 0 56px; }
+    .hero-eyebrow { margin-bottom: 28px; }
+    .masthead {
+      font-family: 'Bebas Neue', sans-serif; font-weight: 400;
+      font-size: clamp(64px, 14vw, 150px); line-height: 0.9; letter-spacing: -0.02em;
+      text-transform: uppercase; margin-bottom: 22px; color: var(--text);
+    }
+    .masthead .accent { color: var(--text-accent); }
+    .subhead {
+      font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(24px, 4vw, 44px);
+      line-height: 1.05; color: var(--text); margin-bottom: 28px;
+    }
+    .hero-body { font-size: clamp(16px, 1.9vw, 20px); line-height: 1.5; max-width: 560px; color: var(--text); }
+    .hero-body strong { color: var(--text-accent); font-weight: 600; }
+
+    /* VIDEO */
+    .video-section { padding: 24px 0 16px; }
+    .video-label { margin-bottom: 18px; }
+    .video-box {
+      position: relative; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--divider);
+      border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: #0d0d0d; gap: 14px; overflow: hidden;
+    }
+    .video-box .play {
+      width: 64px; height: 64px; border-radius: 999px; border: 1.5px solid var(--text);
+      display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--text);
+    }
+    .video-box .cap {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    /* To go live: replace the .video-box block with your embed, e.g.
+       <div class="video-embed"><iframe src="VIMEO_OR_YT_OR_LOOM_URL" ...></iframe></div> */
+
+    /* CHECKLIST */
+    .checklist { padding: 64px 0; border-top: 1px solid var(--hairline); margin-top: 56px; }
+    .checklist-eyebrow { margin-bottom: 40px; }
+    .clist { list-style: none; }
+    .clist li {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 24px 0; border-bottom: 1px solid var(--hairline);
+    }
+    .clist li:last-child { border-bottom: none; }
+    .clist .ic { font-size: 26px; flex: 0 0 auto; line-height: 1.2; }
+    .clist .ct h3 {
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: clamp(18px, 2.4vw, 24px);
+      color: var(--text-accent); margin-bottom: 6px; letter-spacing: -0.01em;
+    }
+    .clist .ct p { font-size: clamp(15px, 1.8vw, 17px); color: var(--text); line-height: 1.5; }
+
+    /* REASSURANCE */
+    .reassure { padding: 72px 0; text-align: center; border-top: 1px solid var(--hairline); }
+    .reassure p {
+      font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(22px, 3.4vw, 36px);
+      line-height: 1.2; color: var(--text); max-width: 640px; margin: 0 auto;
+    }
+    .reassure .sig {
+      font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 12px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--text-muted); margin-top: 24px;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 48px 0 56px; text-align: center; border-top: 1px solid var(--hairline);
+      font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 11px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); line-height: 2;
+    }
+    .site-footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s ease; }
+    .site-footer a:hover { color: var(--text-accent); }
+    .site-footer .sep { margin: 0 12px; color: var(--text-faint); }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .hero { padding: 72px 0 40px; }
+      .checklist { padding: 48px 0; margin-top: 40px; }
+      .clist li { gap: 14px; padding: 20px 0; }
+      .reassure { padding: 56px 0; }
+      body::before { opacity: 0.035; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-in { opacity: 0; transform: translateY(12px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .fade-in.visible { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow hero-eyebrow">Hot Content Club · Your Call</div>
+        <h1 class="masthead">You're<br><span class="accent">booked.</span></h1>
+        <p class="subhead"><em>your call is locked in 🖤</em></p>
+        <p class="hero-body">
+          Check your email for the exact time and the link to join, and <strong>add it to your calendar</strong> so it doesn't sneak up on you.
+        </p>
+      </div>
+    </section>
+
+    <!-- WATCH THIS FIRST -->
+    <section class="video-section">
+      <div class="container">
+        <div class="eyebrow video-label">Watch this first</div>
+        <!-- Replace this .video-box with your VSL embed when the video is ready -->
+        <div class="video-box">
+          <div class="play">▶</div>
+          <div class="cap">a few minutes on what HCC actually is</div>
+        </div>
+        <p class="hero-body" style="margin-top:18px;">
+          It's a few minutes of me explaining exactly what Hot Content Club is and who it's for, so you walk into our call already knowing if it's your thing.
+        </p>
+      </div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section class="checklist">
+      <div class="container">
+        <div class="eyebrow checklist-eyebrow">A few things before we talk</div>
+        <ul class="clist">
+          <li class="fade-in">
+            <span class="ic">📅</span>
+            <div class="ct">
+              <h3>Show up on time.</h3>
+              <p>This is a real spot, held just for you, and the calls are short. If something genuinely comes up, use the reschedule link in your email instead of ghosting, ok?</p>
+            </div>
+          </li>
+          <li class="fade-in">
+            <span class="ic">💻</span>
+            <div class="ct">
+              <h3>Be at your computer, somewhere quiet.</h3>
+              <p>Somewhere you can actually focus and talk freely. Headphones help. Good wifi helps more.</p>
+            </div>
+          </li>
+          <li class="fade-in">
+            <span class="ic">🧠</span>
+            <div class="ct">
+              <h3>Come ready to talk about you.</h3>
+              <p>Where you're at with your content, where you're stuck, and what you actually want. The more honest you are, the more we can actually help.</p>
+            </div>
+          </li>
+          <li class="fade-in">
+            <span class="ic">📱</span>
+            <div class="ct">
+              <h3>Have your Instagram handy.</h3>
+              <p>We'll probably pull it up and look at your content together.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- REASSURANCE -->
+    <section class="reassure">
+      <div class="container">
+        <p class="fade-in">this isn't a pressure-y sales call. it's a real conversation to figure out, together, if this is the right fit for you. that's genuinely it.</p>
+        <div class="sig">talk soon 🖤 angelina</div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <a href="https://instagram.com/angelinaabalandina" target="_blank" rel="noopener">@angelinaabalandina</a>
+        <span class="sep">·</span>
+        <a href="/">hotcontentclub.com</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    } else {
+      document.querySelectorAll('.fade-in').forEach(function(el) { el.classList.add('visible'); });
+    }
+  </script>
+</body>
+</html>
