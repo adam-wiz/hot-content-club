@@ -31,7 +31,7 @@
       --text-muted: #6f6a64; --text-faint: #3f3a35; --hairline: #1a1a1a; --divider: #2a2520;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       background: var(--bg); color: var(--text);
       font-family: 'Inter', system-ui, sans-serif; font-weight: 400; line-height: 1.5;
@@ -50,24 +50,29 @@
       letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted);
     }
 
-    /* HERO — above-the-fold on one screen: headline / VSL / subheadline / button */
-    .hero { min-height: 100svh; display: flex; align-items: center; padding: 76px 0 40px; }
-    .hero .container {
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-      gap: clamp(16px, 2.6vh, 30px);
+    /* HERO — one screen: small brand header pinned top, then headline / VSL / subheadline / button centered */
+    .hero { min-height: 100svh; display: flex; padding: 22px 0 32px; }
+    .hero .container { display: flex; flex-direction: column; width: 100%; }
+    .brand-header {
+      text-align: center; font-family: 'Bebas Neue', sans-serif; font-weight: 400;
+      font-size: clamp(16px, 3vw, 22px); letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text); margin-bottom: clamp(14px, 3vh, 36px);
+    }
+    .hero-main {
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; gap: clamp(16px, 2.3vh, 26px);
     }
     .masthead {
       font-family: 'Bebas Neue', sans-serif; font-weight: 400;
-      font-size: clamp(34px, 11vw, 104px); line-height: 0.9; letter-spacing: -0.01em;
-      text-transform: uppercase; margin: 0; color: var(--text);
-      white-space: nowrap; /* keep "Hot Content Club" on one line (fits down to 320px) */
+      font-size: clamp(30px, 7vw, 66px); line-height: 0.98; letter-spacing: -0.01em;
+      text-transform: uppercase; margin: 0; color: var(--text); text-wrap: balance;
     }
     .masthead .accent { color: var(--text-accent); }
     /* Size the video off viewport height too, so the subheadline + button always stay above the fold */
-    .hero .vsl { margin: 0; width: min(520px, 62svh); max-width: 100%; }
+    .hero .vsl { margin: 0; width: min(460px, 48svh); max-width: 100%; }
     .hero-sub {
-      margin: 0; max-width: 640px;
-      font-size: clamp(16px, 1.9vw, 20px); line-height: 1.5; color: var(--text);
+      margin: 0; max-width: 600px;
+      font-size: clamp(15px, 1.8vw, 19px); line-height: 1.5; color: var(--text);
     }
     .hero-sub strong { color: var(--text-accent); font-weight: 600; }
     .hero .cta-button { align-self: center; }
@@ -150,7 +155,7 @@
     .apply h2 {
       font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(22px, 7vw, 64px);
       line-height: 0.92; text-transform: uppercase; letter-spacing: -0.01em; color: var(--text-accent);
-      margin-bottom: 14px; white-space: nowrap; /* keep on one line, down to 320px */
+      margin-bottom: 14px;
     }
     .apply-sub {
       font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(20px, 2.8vw, 28px);
@@ -179,7 +184,7 @@
 
     @media (max-width: 768px) {
       .container { padding: 0 20px; }
-      .hero { padding: 60px 0 32px; }
+      .hero { padding: 16px 0 28px; }
       .inside { padding: 56px 0; }
       .offers { padding: 64px 0; }
       .offers-head { margin-bottom: 32px; }
@@ -198,17 +203,21 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container">
-        <h1 class="masthead">Hot Content <span class="accent">Club</span></h1>
+        <div class="brand-header">Hot Content Club</div>
 
-        <!-- VSL -->
-        <div class="vsl">
-          <div class="vsl-frame">
-            <wistia-player media-id="yckjw2lqdx" aspect="1.5384615384615385"></wistia-player>
+        <div class="hero-main">
+          <h1 class="masthead">f*ck fake content...<br><span class="accent">this is what you need instead</span></h1>
+
+          <!-- VSL -->
+          <div class="vsl">
+            <div class="vsl-frame">
+              <wistia-player media-id="yckjw2lqdx" aspect="1.5384615384615385"></wistia-player>
+            </div>
           </div>
-        </div>
 
-        <p class="hero-sub">a girls-only consulting club where we talk about posting content the <strong>right way</strong> in 2026. the kind that actually brings you customers, authority, and <strong>real branding</strong>. you know... that kind.</p>
-        <a href="#apply" class="cta-button">Apply →</a>
+          <p class="hero-sub">a private girls-only content club where we talk about posting the <strong>right way</strong> in 2026. the kind that actually brings you customers, authority, and <strong>real branding</strong>. you know... that kind.</p>
+          <a href="#apply" class="cta-button">Apply →</a>
+        </div>
       </div>
     </section>
 
