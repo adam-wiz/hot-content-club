@@ -56,10 +56,10 @@
     .brand-header {
       text-align: center; font-family: 'Bebas Neue', sans-serif; font-weight: 400;
       font-size: clamp(19px, 3.6vw, 27px); letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--text); margin-bottom: clamp(14px, 3vh, 36px);
+      color: var(--text); margin-bottom: clamp(6px, 1.2vh, 14px);
     }
     .hero-main {
-      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
       text-align: center; gap: clamp(16px, 2.3vh, 26px);
     }
     .masthead {
@@ -185,6 +185,7 @@
     @media (max-width: 768px) {
       .container { padding: 0 14px; }
       .hero { padding: 16px 0 28px; }
+      .hero .container { padding: 0 6px; } /* let the big headline run wider, less side padding */
       .inside { padding: 56px 0; }
       .offers { padding: 64px 0; }
       .offers-head { margin-bottom: 32px; }
@@ -206,7 +207,7 @@
         <div class="brand-header">Hot Content Club</div>
 
         <div class="hero-main">
-          <h1 class="masthead">f*ck fake content...<br><span class="accent">this is what you need instead</span></h1>
+          <h1 class="masthead">f*ck going viral...<br><span class="accent">here's how to build an audience that makes you the girl to watch</span></h1>
 
           <!-- VSL -->
           <div class="vsl">
