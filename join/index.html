@@ -104,8 +104,13 @@
     }
     /* Typeform embed container */
     .tf-embed {
-      width: 100%; min-height: 700px; border: 1px solid var(--divider); border-radius: 14px; overflow: hidden;
+      width: 100%; height: 640px; border: 1px solid var(--divider); border-radius: 14px; overflow: hidden;
       background: #0d0d0d;
+    }
+    /* Typeform injects a wrapper div with an inline height:500px default.
+       Force that wrapper (and the iframe) to fill our sized box so there's no dead space. */
+    .tf-embed > div, .tf-embed .tf-v1-widget, .tf-embed iframe {
+      width: 100% !important; height: 100% !important; border: 0 !important;
     }
     .tf-fallback { margin-top: 22px; text-align: center; }
 
@@ -124,6 +129,7 @@
       .hero { padding: 72px 0 48px; }
       .inside { padding: 56px 0; }
       .apply { padding: 64px 0 32px; }
+      .tf-embed { height: 78vh; min-height: 560px; }
       body::before { opacity: 0.035; }
     }
   </style>
