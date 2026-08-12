@@ -185,6 +185,11 @@
     .site-footer a:hover { color: var(--text-accent); }
     .site-footer .sep { margin: 0 12px; color: var(--text-faint); }
 
+    @media (min-width: 769px) {
+      /* desktop: widen the H1 so it lands on exactly 3 lines at full size */
+      .masthead { width: min(900px, 90vw); max-width: none; }
+    }
+
     @media (max-width: 768px) {
       .container { padding: 0 14px; }
       .hero { padding: 16px 0 28px; }
