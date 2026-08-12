@@ -64,16 +64,18 @@
     }
     .masthead {
       font-family: 'Bebas Neue', sans-serif; font-weight: 400;
-      font-size: clamp(46px, 11vw, 100px); line-height: 0.94; letter-spacing: -0.01em;
+      font-size: clamp(46px, 11vw, 72px); line-height: 0.94; letter-spacing: -0.01em;
       text-transform: uppercase; margin: 0; color: var(--text); text-wrap: balance;
     }
     .masthead .accent { color: var(--text-accent); }
     /* Size the video off viewport height too, so the subheadline + button always stay above the fold */
-    .hero .vsl { margin: 0; width: min(440px, 46svh); max-width: 100%; }
+    .hero .vsl { margin: 0; width: min(440px, 40svh); max-width: 100%; }
     .hero-sub {
       margin: 0; max-width: 600px;
-      font-size: clamp(15px, 1.8vw, 19px); line-height: 1.5; color: var(--text);
+      font-size: clamp(15px, 1.8vw, 19px); line-height: 1.6; color: var(--text);
     }
+    .hero-sub p { margin: 0; }
+    .hero-sub p + p { margin-top: 0.85em; } /* breather between the two paragraphs */
     .hero-sub strong { color: var(--text-accent); font-weight: 600; }
     .hero .cta-button { align-self: center; }
 
@@ -218,7 +220,10 @@
             </div>
           </div>
 
-          <p class="hero-sub">a private girls-only content club where we focus on posting the <strong>right way</strong> in 2026. the kind that blows you up in your niche instead of going viral for a day, pulls in your ideal customers, and makes you the <strong>authority</strong>.</p>
+          <div class="hero-sub">
+            <p>a private girls-only content club where we focus on posting the <strong>right way</strong> in 2026.</p>
+            <p>the kind that blows you up in your niche instead of going viral for a day, pulls in your ideal customers, and makes you the <strong>authority</strong>.</p>
+          </div>
           <a href="#apply" class="cta-button">Apply →</a>
         </div>
       </div>
